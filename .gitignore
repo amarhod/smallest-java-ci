@@ -1,11 +1,14 @@
 *.class
-
+*DS_Store
+testFolder
+testFolder2
+app/version/*
 # Ignore Gradle project-specific cache directory
 .gradle
 
 # Ignore Gradle build output directory
 build
-
+version/*
 .settings
 .project
 .idea
