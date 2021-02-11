@@ -28,6 +28,7 @@ dependencies {
     implementation 'com.google.guava:guava:29.0-jre'
 
     compile group: 'org.eclipse.jetty', name: 'jetty-server', version: '9.4.36.v20210114'
+    compile group: 'org.eclipse.jgit', name: 'org.eclipse.jgit', version: '5.9.0.202009080501-r'
 }
 
 application {
