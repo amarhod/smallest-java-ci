@@ -9,6 +9,9 @@ import java.io.IOException;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
+import org.eclipse.jgit.api.errors.GitAPIException;
+
+import static smallest.java.ci.GitHelper.cloneRepo;
 
 /** 
  Skeleton of a ContinuousIntegrationServer which acts as webhook
@@ -20,22 +23,25 @@ public class ContinuousIntegrationServer extends AbstractHandler
                        Request baseRequest,
                        HttpServletRequest request,
                        HttpServletResponse response) 
-        throws IOException, ServletException
-    {
+        throws IOException, ServletException {
+
         String requestMethod = request.getMethod();
+        System.out.printf("handling %s request to URI: %s\n", requestMethod, target);
         switch (requestMethod){
             case "GET":
-                System.out.printf("handling %s request to URI: %s\n", requestMethod, target);
                 response.setContentType("text/html;charset=utf-8");
                 response.setStatus(HttpServletResponse.SC_OK);
                 baseRequest.setHandled(true);
                 response.getWriter().println("CI job done");
-		break;
+		        break;
+
             case "POST":
-                System.out.printf("handling %s request to URI: %s\n", requestMethod, target);
+                try {
+                    cloneRepo("version/smallest-java-ci", "webhook-signals");
+                } catch (GitAPIException e) {e.printStackTrace();}
                 response.setStatus(HttpServletResponse.SC_OK);
                 baseRequest.setHandled(true);
-		break;
+		        break;
         }
     }
  
