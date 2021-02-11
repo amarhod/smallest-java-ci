@@ -30,10 +30,12 @@ public class ContinuousIntegrationServer extends AbstractHandler
                 response.setStatus(HttpServletResponse.SC_OK);
                 baseRequest.setHandled(true);
                 response.getWriter().println("CI job done");
+		break;
             case "POST":
                 System.out.printf("handling %s request to URI: %s\n", requestMethod, target);
                 response.setStatus(HttpServletResponse.SC_OK);
                 baseRequest.setHandled(true);
+		break;
         }
     }
  
