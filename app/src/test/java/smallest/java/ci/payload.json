@@ -1,0 +1,184 @@
+{
+  "ref": "refs/heads/webhook-signals",
+  "before": "50800e7b5ffd59d3d6cd6a60be78920c62189687",
+  "after": "0762e2aff34081061608b9788ccee7a747a0355a",
+  "repository": {
+    "id": 336267497,
+    "node_id": "MDEwOlJlcG9zaXRvcnkzMzYyNjc0OTc=",
+    "name": "smallest-java-ci",
+    "full_name": "amarhod/smallest-java-ci",
+    "private": false,
+    "owner": {
+      "name": "amarhod",
+      "email": "36760221+amarhod@users.noreply.github.com",
+      "login": "amarhod",
+      "id": 36760221,
+      "node_id": "MDQ6VXNlcjM2NzYwMjIx",
+      "avatar_url": "https://avatars.githubusercontent.com/u/36760221?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/amarhod",
+      "html_url": "https://github.com/amarhod",
+      "followers_url": "https://api.github.com/users/amarhod/followers",
+      "following_url": "https://api.github.com/users/amarhod/following{/other_user}",
+      "gists_url": "https://api.github.com/users/amarhod/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/amarhod/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/amarhod/subscriptions",
+      "organizations_url": "https://api.github.com/users/amarhod/orgs",
+      "repos_url": "https://api.github.com/users/amarhod/repos",
+      "events_url": "https://api.github.com/users/amarhod/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/amarhod/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "html_url": "https://github.com/amarhod/smallest-java-ci",
+    "description": "CI server skeleton implemented in Java for educational purposes",
+    "fork": true,
+    "url": "https://github.com/amarhod/smallest-java-ci",
+    "forks_url": "https://api.github.com/repos/amarhod/smallest-java-ci/forks",
+    "keys_url": "https://api.github.com/repos/amarhod/smallest-java-ci/keys{/key_id}",
+    "collaborators_url": "https://api.github.com/repos/amarhod/smallest-java-ci/collaborators{/collaborator}",
+    "teams_url": "https://api.github.com/repos/amarhod/smallest-java-ci/teams",
+    "hooks_url": "https://api.github.com/repos/amarhod/smallest-java-ci/hooks",
+    "issue_events_url": "https://api.github.com/repos/amarhod/smallest-java-ci/issues/events{/number}",
+    "events_url": "https://api.github.com/repos/amarhod/smallest-java-ci/events",
+    "assignees_url": "https://api.github.com/repos/amarhod/smallest-java-ci/assignees{/user}",
+    "branches_url": "https://api.github.com/repos/amarhod/smallest-java-ci/branches{/branch}",
+    "tags_url": "https://api.github.com/repos/amarhod/smallest-java-ci/tags",
+    "blobs_url": "https://api.github.com/repos/amarhod/smallest-java-ci/git/blobs{/sha}",
+    "git_tags_url": "https://api.github.com/repos/amarhod/smallest-java-ci/git/tags{/sha}",
+    "git_refs_url": "https://api.github.com/repos/amarhod/smallest-java-ci/git/refs{/sha}",
+    "trees_url": "https://api.github.com/repos/amarhod/smallest-java-ci/git/trees{/sha}",
+    "statuses_url": "https://api.github.com/repos/amarhod/smallest-java-ci/statuses/{sha}",
+    "languages_url": "https://api.github.com/repos/amarhod/smallest-java-ci/languages",
+    "stargazers_url": "https://api.github.com/repos/amarhod/smallest-java-ci/stargazers",
+    "contributors_url": "https://api.github.com/repos/amarhod/smallest-java-ci/contributors",
+    "subscribers_url": "https://api.github.com/repos/amarhod/smallest-java-ci/subscribers",
+    "subscription_url": "https://api.github.com/repos/amarhod/smallest-java-ci/subscription",
+    "commits_url": "https://api.github.com/repos/amarhod/smallest-java-ci/commits{/sha}",
+    "git_commits_url": "https://api.github.com/repos/amarhod/smallest-java-ci/git/commits{/sha}",
+    "comments_url": "https://api.github.com/repos/amarhod/smallest-java-ci/comments{/number}",
+    "issue_comment_url": "https://api.github.com/repos/amarhod/smallest-java-ci/issues/comments{/number}",
+    "contents_url": "https://api.github.com/repos/amarhod/smallest-java-ci/contents/{+path}",
+    "compare_url": "https://api.github.com/repos/amarhod/smallest-java-ci/compare/{base}...{head}",
+    "merges_url": "https://api.github.com/repos/amarhod/smallest-java-ci/merges",
+    "archive_url": "https://api.github.com/repos/amarhod/smallest-java-ci/{archive_format}{/ref}",
+    "downloads_url": "https://api.github.com/repos/amarhod/smallest-java-ci/downloads",
+    "issues_url": "https://api.github.com/repos/amarhod/smallest-java-ci/issues{/number}",
+    "pulls_url": "https://api.github.com/repos/amarhod/smallest-java-ci/pulls{/number}",
+    "milestones_url": "https://api.github.com/repos/amarhod/smallest-java-ci/milestones{/number}",
+    "notifications_url": "https://api.github.com/repos/amarhod/smallest-java-ci/notifications{?since,all,participating}",
+    "labels_url": "https://api.github.com/repos/amarhod/smallest-java-ci/labels{/name}",
+    "releases_url": "https://api.github.com/repos/amarhod/smallest-java-ci/releases{/id}",
+    "deployments_url": "https://api.github.com/repos/amarhod/smallest-java-ci/deployments",
+    "created_at": 1612528670,
+    "updated_at": "2021-02-11T19:45:29Z",
+    "pushed_at": 1613123960,
+    "git_url": "git://github.com/amarhod/smallest-java-ci.git",
+    "ssh_url": "git@github.com:amarhod/smallest-java-ci.git",
+    "clone_url": "https://github.com/amarhod/smallest-java-ci.git",
+    "svn_url": "https://github.com/amarhod/smallest-java-ci",
+    "homepage": null,
+    "size": 78,
+    "stargazers_count": 1,
+    "watchers_count": 1,
+    "language": "Java",
+    "has_issues": true,
+    "has_projects": true,
+    "has_downloads": true,
+    "has_wiki": false,
+    "has_pages": false,
+    "forks_count": 1,
+    "mirror_url": null,
+    "archived": false,
+    "disabled": false,
+    "open_issues_count": 5,
+    "license": null,
+    "forks": 1,
+    "open_issues": 5,
+    "watchers": 1,
+    "default_branch": "master",
+    "stargazers": 1,
+    "master_branch": "master"
+  },
+  "pusher": {
+    "name": "amarhod",
+    "email": "36760221+amarhod@users.noreply.github.com"
+  },
+  "sender": {
+    "login": "amarhod",
+    "id": 36760221,
+    "node_id": "MDQ6VXNlcjM2NzYwMjIx",
+    "avatar_url": "https://avatars.githubusercontent.com/u/36760221?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/amarhod",
+    "html_url": "https://github.com/amarhod",
+    "followers_url": "https://api.github.com/users/amarhod/followers",
+    "following_url": "https://api.github.com/users/amarhod/following{/other_user}",
+    "gists_url": "https://api.github.com/users/amarhod/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/amarhod/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/amarhod/subscriptions",
+    "organizations_url": "https://api.github.com/users/amarhod/orgs",
+    "repos_url": "https://api.github.com/users/amarhod/repos",
+    "events_url": "https://api.github.com/users/amarhod/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/amarhod/received_events",
+    "type": "User",
+    "site_admin": false
+  },
+  "created": false,
+  "deleted": false,
+  "forced": false,
+  "base_ref": null,
+  "compare": "https://github.com/amarhod/smallest-java-ci/compare/50800e7b5ffd...0762e2aff340",
+  "commits": [
+    {
+      "id": "0762e2aff34081061608b9788ccee7a747a0355a",
+      "tree_id": "5cc09ba1b3a7ca51ee9fc4ed4c86a61d1ee52bc3",
+      "distinct": true,
+      "message": "test: Testing webhook",
+      "timestamp": "2021-02-12T10:59:07+01:00",
+      "url": "https://github.com/amarhod/smallest-java-ci/commit/0762e2aff34081061608b9788ccee7a747a0355a",
+      "author": {
+        "name": "John Doe",
+        "username": "JD"
+      },
+      "committer": {
+        "name": "John Doe",
+        "username": "JD"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "testCommit"
+      ]
+    }
+  ],
+  "head_commit": {
+    "id": "0762e2aff34081061608b9788ccee7a747a0355a",
+    "tree_id": "5cc09ba1b3a7ca51ee9fc4ed4c86a61d1ee52bc3",
+    "distinct": true,
+    "message": "test: Testing webhook",
+    "timestamp": "2021-02-12T10:59:07+01:00",
+    "url": "https://github.com/amarhod/smallest-java-ci/commit/0762e2aff34081061608b9788ccee7a747a0355a",
+    "author": {
+      "name": "John Doe",
+      "username": "JD"
+    },
+    "committer": {
+      "name": "John Doe",
+      "username": "JD"
+    },
+    "added": [
+
+    ],
+    "removed": [
+
+    ],
+    "modified": [
+      "testCommit"
+    ]
+  }
+}
