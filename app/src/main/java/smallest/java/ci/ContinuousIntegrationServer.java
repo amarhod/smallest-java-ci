@@ -3,15 +3,17 @@ package smallest.java.ci;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletException;
- 
+
+import java.io.BufferedReader;
 import java.io.IOException;
  
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
 import org.eclipse.jgit.api.errors.GitAPIException;
+import org.json.simple.parser.ParseException;
 
-import static smallest.java.ci.GitHelper.cloneRepo;
+import static smallest.java.ci.GitHelper.*;
 
 /** 
  Skeleton of a ContinuousIntegrationServer which acts as webhook
@@ -36,11 +38,27 @@ public class ContinuousIntegrationServer extends AbstractHandler
 		        break;
 
             case "POST":
+                BufferedReader payload = request.getReader();
+                boolean isValid = false;
                 try {
-                    cloneRepo("version/smallest-java-ci", "webhook-signals");
-                } catch (GitAPIException e) {e.printStackTrace();}
-                response.setStatus(HttpServletResponse.SC_OK);
-                baseRequest.setHandled(true);
+                    isValid = isValidWebhook(payload, "assessment");
+                } catch (ParseException e) {e.printStackTrace();}
+
+                if(isValid) {
+                    try {
+                        cloneRepo("version/smallest-java-ci", "assessment");
+                    } catch (GitAPIException e) {
+                        e.printStackTrace();
+                        response.setStatus(HttpServletResponse.SC_CONFLICT);
+                        baseRequest.setHandled(true);
+                        return;
+                    }
+                    response.setStatus(HttpServletResponse.SC_OK);
+                    baseRequest.setHandled(true);
+                }else{
+                    response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+                    baseRequest.setHandled(true);
+                }
 		        break;
         }
     }
