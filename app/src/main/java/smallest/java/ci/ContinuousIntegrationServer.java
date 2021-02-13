@@ -6,7 +6,9 @@ import javax.servlet.ServletException;
 
 import java.io.BufferedReader;
 import java.io.IOException;
- 
+import java.io.File; 
+import java.io.*;
+
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
@@ -53,6 +55,17 @@ public class ContinuousIntegrationServer extends AbstractHandler
                         baseRequest.setHandled(true);
                         return;
                     }
+		    
+		    File gitfolder = new File("filepath of created repo here");
+                    Runtime rt = Runtime.getRuntime();
+                    Process proc = rt.exec("./gradlew clean build", null, gitfolder);
+		    BufferedReader stdInput = new BufferedReader(new InputStreamReader(proc.getInputStream()));
+		    //prints build status to stdout
+		    String s = null;
+		    while ((s = stdInput.readLine()) != null) {
+		    	System.out.println(s);
+		    }
+		    
                     response.setStatus(HttpServletResponse.SC_OK);
                     baseRequest.setHandled(true);
                 }else{
