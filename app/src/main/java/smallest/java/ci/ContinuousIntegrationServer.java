@@ -40,6 +40,12 @@ public class ContinuousIntegrationServer extends AbstractHandler
 		        break;
 
             case "POST":
+
+		//Collects the webook data which you can pick and choose info from to add to the mail
+                String requestData = request.getReader().lines().collect(Collectors.joining());
+                
+                mailNotification.sendMail(requestData);
+			
                 BufferedReader payload = request.getReader();
                 boolean isValid = false;
                 try {
