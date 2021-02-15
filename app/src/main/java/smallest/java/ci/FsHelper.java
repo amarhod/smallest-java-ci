@@ -8,15 +8,19 @@ import org.json.simple.parser.ParseException;
 
 import java.io.*;
 
+
+/** File system helper class */
 public class FsHelper {
 
+  	/** Removes a folder at the given filepath */
     static void removeFolder(String filepath) throws IOException {
         File dir = new File(filepath);
         try {
             FileUtils.delete(dir, FileUtils.RECURSIVE);
             } catch (IOException e) {}
     }
-
+  
+  	/** Stores information for a specifc commit and its build result onto a local file */
     static void saveBuildInfo(String gradleBuildInfo, String payload, String commitHash) throws IOException {
         JSONParser parser = new JSONParser();
         JSONObject payloadObject;

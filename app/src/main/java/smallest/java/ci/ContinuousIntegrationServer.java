@@ -25,9 +25,12 @@ import static smallest.java.ci.GitHelper.*;
 /** 
  Skeleton of a ContinuousIntegrationServer which acts as webhook
  See the Jetty documentation for API documentation of those classes.
-*/
+**/
 public class ContinuousIntegrationServer extends AbstractHandler
 {
+	
+	/** Initialization of server.
+		Cloning, building, testing and email notification methods are called from here on POST requests*/
     public void handle(String target,
                        Request baseRequest,
                        HttpServletRequest request,
@@ -91,7 +94,7 @@ public class ContinuousIntegrationServer extends AbstractHandler
         }
     }
  
-    // used to start the CI server in command line
+    /** Starts the CI server from the commandline */
     public static void main(String[] args) throws Exception
     {
         Server server = new Server(8080);

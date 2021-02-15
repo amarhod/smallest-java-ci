@@ -9,6 +9,7 @@ import javax.mail.internet.MimeMessage;
 
 import org.json.JSONObject;
 
+/** Class that handles the sending of emails notifying users of their commit status */
 public class MailNotification {
 	
 	static void sendMail(String payload, String gradleBuildInfo) {
