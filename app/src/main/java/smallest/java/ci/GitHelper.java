@@ -16,6 +16,18 @@ import static smallest.java.ci.FsHelper.removeFolder;
 
 class GitHelper {
 
+    static String getCommitHash(String payload){
+        JSONParser parser = new JSONParser();
+        JSONObject payloadObject;
+        try {
+            payloadObject = (JSONObject) parser.parse(payload);
+        }catch(ParseException e){return null;}
+        String commitHash = (String) payloadObject.get("after");
+        if(commitHash == null || commitHash == "")
+            return null;
+        return commitHash;
+    }
+
     static boolean isValidWebhook(String payload, String acceptedBranch) throws IOException, ParseException {
         JSONParser parser = new JSONParser();
         JSONObject payloadObject;

@@ -10,12 +10,16 @@ import java.io.File;
 import java.io.*;
 import java.util.stream.Collectors;
 
+import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
+import org.eclipse.jetty.server.handler.HandlerList;
+import org.eclipse.jetty.server.handler.ResourceHandler;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.json.simple.parser.ParseException;
 
+import static smallest.java.ci.FsHelper.saveBuildInfo;
 import static smallest.java.ci.GitHelper.*;
 
 /** 
@@ -43,36 +47,39 @@ public class ContinuousIntegrationServer extends AbstractHandler
             case "POST":
 
 	        	//Collects the webook data which you can pick and choose info from to add to the mail
-                String payload = request.getReader().lines().collect(Collectors.joining());
+                String payload = request.getReader().lines().collect(Collectors.joining("\n"));
+
 
                 boolean isValid = false;
                 try {
-                    isValid = isValidWebhook(payload, "assessment");
+                    isValid = isValidWebhook(payload, "webhook-signals");
                 } catch (ParseException e) {e.printStackTrace();}
 
                 if(isValid) {
                     try {
-                        cloneRepo("version/smallest-java-ci", "assessment");
+                        cloneRepo("version/smallest-java-ci", "webhook-signals");
                     } catch (GitAPIException e) {
                         e.printStackTrace();
                         response.setStatus(HttpServletResponse.SC_CONFLICT);
                         baseRequest.setHandled(true);
                         return;
                     }
-		    
+                    String currentPath = System.getProperty("user.dir") + "/src/buildMetaInfo/";
+                    String commitHash = getCommitHash(payload);
+                    System.out.println(commitHash);
                     File gitfolder = new File("version/smallest-java-ci");
                     Runtime rt = Runtime.getRuntime();
                     Process proc = rt.exec("./gradlew clean build --warning-mode none", null, gitfolder);
-                    BufferedReader stdInput = new BufferedReader(new InputStreamReader(proc.getInputStream()));
+                    String gradleBuildInfo = new BufferedReader(new InputStreamReader(proc.getInputStream())).lines().collect(Collectors.joining("\n"));
+                    saveBuildInfo(gradleBuildInfo, payload, commitHash);
                     //prints build status to stdout
-                    System.out.println("\n###BUILDING REPOSITORY####\n");
-                    String s = null;
-                    while ((s = stdInput.readLine()) != null) {
-                        System.out.println(s);
-                    }
-                    System.out.println("\n###BUILD FINISHED####\n");
+                    System.out.println("\n#########BUILDING REPOSITORY##########\n");
+                    BufferedReader reader = new BufferedReader(new FileReader("buildMetaInfo/" + commitHash));
+                    String buildSummary = reader.lines().collect(Collectors.joining("\n"));
+                    System.out.println(buildSummary);
+                    System.out.println("\n#########BUILD FINISHED##########\n");
 
-                    MailNotification.sendMail(payload);
+                    MailNotification.sendMail(payload, buildSummary);
 
                     response.setStatus(HttpServletResponse.SC_OK);
                     baseRequest.setHandled(true);
@@ -88,7 +95,12 @@ public class ContinuousIntegrationServer extends AbstractHandler
     public static void main(String[] args) throws Exception
     {
         Server server = new Server(8080);
-        server.setHandler(new ContinuousIntegrationServer()); 
+        ResourceHandler resourceHandler = new ResourceHandler();
+        resourceHandler.setDirectoriesListed(true);
+        resourceHandler.setResourceBase("buildMetaInfo");
+        HandlerList handlers = new HandlerList();
+        handlers.setHandlers(new Handler[] {resourceHandler, new ContinuousIntegrationServer()});
+        server.setHandler(handlers);
         server.start();
         server.join();
     }
