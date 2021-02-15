@@ -52,12 +52,12 @@ public class ContinuousIntegrationServer extends AbstractHandler
 
                 boolean isValid = false;
                 try {
-                    isValid = isValidWebhook(payload, "webhook-signals");
+                    isValid = isValidWebhook(payload, "assessment");
                 } catch (ParseException e) {e.printStackTrace();}
 
                 if(isValid) {
                     try {
-                        cloneRepo("version/smallest-java-ci", "webhook-signals");
+                        cloneRepo("version/smallest-java-ci", "assessment");
                     } catch (GitAPIException e) {
                         e.printStackTrace();
                         response.setStatus(HttpServletResponse.SC_CONFLICT);
