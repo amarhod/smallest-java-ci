@@ -12,16 +12,14 @@ import org.json.JSONObject;
 /** Class that handles the sending of emails notifying users of their commit status */
 public class MailNotification {
 	
-	static void sendMail(String requestData) {
+	static void sendMail(String payload, String gradleBuildInfo) {
 
-		JSONObject obj = new JSONObject(requestData);
+		JSONObject obj = new JSONObject(payload);
         
         String name = obj.getJSONObject("pusher").getString("name");
         String repo = obj.getJSONObject("repository").getString("name");
 		String commitMsg = obj.getJSONObject("head_commit").getString("message");
 		String branch = obj.getString("ref").replace("refs/heads/", "");
-
-		String mailText = "User: " + name + " has made a commit on the branch: " + branch + "\n with commit message: " + commitMsg;
 
     	String username = "dd2480lab2@gmail.com";
 	    String password = "2480Lab2!";
@@ -52,7 +50,7 @@ public class MailNotification {
 			msg.addRecipient(Message.RecipientType.TO,new InternetAddress(recipient2));
 			msg.addRecipient(Message.RecipientType.TO,new InternetAddress(recipient3));
 			msg.setSubject("A commit has been made to repository: " + repo);
-    	    msg.setText(mailText);
+    	    msg.setText(gradleBuildInfo);
 			Transport.send(msg);
 	    } catch (MessagingException e) {
 		e.printStackTrace();
