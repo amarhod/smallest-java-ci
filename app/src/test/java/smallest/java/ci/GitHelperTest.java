@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.stream.Collectors;
 
 import static smallest.java.ci.FsHelper.removeFolder;
 import static smallest.java.ci.GitHelper.cloneRepo;
@@ -45,23 +46,22 @@ public class GitHelperTest {
 
     @Test
     void isValidWebhookTest() throws IOException, ParseException {
-        BufferedReader payload;
+        String payload;
         String currentPath = System.getProperty("user.dir") + "/src/test/java/smallest/java/ci/";
         String filepath = currentPath + "payload.json";
         try {
-            payload = new BufferedReader(new FileReader(filepath));
+            payload = new BufferedReader(new FileReader(filepath)).lines().collect(Collectors.joining());
         }catch(IOException e){throw new IOException("payload test file missing");}
+
         Assertions.assertEquals(true, isValidWebhook(payload, "webhook-signals"));
 
-        try {
-            payload = new BufferedReader(new FileReader(filepath));
-        }catch(IOException e){throw new IOException("payload test file missing");}
         Assertions.assertEquals(false, isValidWebhook(payload, "nonExistingBranch"));
 
         filepath = currentPath + "badPayload.json";
         try {
-            payload = new BufferedReader(new FileReader(filepath));
+            payload = new BufferedReader(new FileReader(filepath)).lines().collect(Collectors.joining());
         }catch(IOException e){throw new IOException("payload test file missing");}
+
         Assertions.assertEquals(false, isValidWebhook(payload, "nonExistingBranch"));
     }
 }

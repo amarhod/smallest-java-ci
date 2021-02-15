@@ -16,7 +16,7 @@ import static smallest.java.ci.FsHelper.removeFolder;
 
 class GitHelper {
 
-    static boolean isValidWebhook(BufferedReader payload, String acceptedBranch) throws IOException, ParseException {
+    static boolean isValidWebhook(String payload, String acceptedBranch) throws IOException, ParseException {
         JSONParser parser = new JSONParser();
         JSONObject payloadObject;
         try {
