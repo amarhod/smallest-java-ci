@@ -43,11 +43,8 @@ public class ContinuousIntegrationServer extends AbstractHandler
             case "POST":
 
 	        	//Collects the webook data which you can pick and choose info from to add to the mail
-                String requestData = request.getReader().lines().collect(Collectors.joining());
-                
-                mailNotification.sendMail(requestData);
+                String payload = request.getReader().lines().collect(Collectors.joining());
 
-                BufferedReader payload = request.getReader();
                 boolean isValid = false;
                 try {
                     isValid = isValidWebhook(payload, "assessment");
@@ -74,6 +71,8 @@ public class ContinuousIntegrationServer extends AbstractHandler
                         System.out.println(s);
                     }
                     System.out.println("\n###BUILD FINISHED####\n");
+
+                    MailNotification.sendMail(payload);
 
                     response.setStatus(HttpServletResponse.SC_OK);
                     baseRequest.setHandled(true);
