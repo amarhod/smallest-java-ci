@@ -42,11 +42,11 @@ public class ContinuousIntegrationServer extends AbstractHandler
 
             case "POST":
 
-		//Collects the webook data which you can pick and choose info from to add to the mail
+	        	//Collects the webook data which you can pick and choose info from to add to the mail
                 String requestData = request.getReader().lines().collect(Collectors.joining());
                 
                 mailNotification.sendMail(requestData);
-			
+
                 BufferedReader payload = request.getReader();
                 boolean isValid = false;
                 try {
@@ -63,16 +63,18 @@ public class ContinuousIntegrationServer extends AbstractHandler
                         return;
                     }
 		    
-		    File gitfolder = new File("filepath of created repo here");
+                    File gitfolder = new File("version/smallest-java-ci");
                     Runtime rt = Runtime.getRuntime();
-                    Process proc = rt.exec("./gradlew clean build", null, gitfolder);
-		    BufferedReader stdInput = new BufferedReader(new InputStreamReader(proc.getInputStream()));
-		    //prints build status to stdout
-		    String s = null;
-		    while ((s = stdInput.readLine()) != null) {
-		    	System.out.println(s);
-		    }
-		    
+                    Process proc = rt.exec("./gradlew clean build --warning-mode none", null, gitfolder);
+                    BufferedReader stdInput = new BufferedReader(new InputStreamReader(proc.getInputStream()));
+                    //prints build status to stdout
+                    System.out.println("\n###BUILDING REPOSITORY####\n");
+                    String s = null;
+                    while ((s = stdInput.readLine()) != null) {
+                        System.out.println(s);
+                    }
+                    System.out.println("\n###BUILD FINISHED####\n");
+
                     response.setStatus(HttpServletResponse.SC_OK);
                     baseRequest.setHandled(true);
                 }else{
