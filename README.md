@@ -47,4 +47,4 @@ Gustav Dowling - Mainly implemented the automatic building and testing functiona
 Amar Hodzic - Implemented the Git clone, webhook validation and folder removal functions including tests. 
 As well as some functionality in the handle function used by the server handler.
 
-Petter Jansen - 
+Petter Jansen - Wrote the class that sends a mail notification as well as pulls webhook data to use in the mail.
