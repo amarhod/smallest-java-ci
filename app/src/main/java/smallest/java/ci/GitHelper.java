@@ -14,8 +14,10 @@ import java.io.IOException;
 import static java.util.Collections.singleton;
 import static smallest.java.ci.FsHelper.removeFolder;
 
+/** Git helper class containing methods that use JGit*/
 class GitHelper {
-
+	
+	/** Checks if the payload for the given post request is valid */
     static boolean isValidWebhook(String payload, String acceptedBranch) throws IOException, ParseException {
         JSONParser parser = new JSONParser();
         JSONObject payloadObject;
@@ -27,7 +29,8 @@ class GitHelper {
             return false;
         return true;
     }
-
+	
+	/** Clones the git repository and checks out the given branch into a folder at the given filepath */
     static void cloneRepo(String filepath, String branch) throws GitAPIException {
         try {removeFolder(filepath);} catch (IOException ioException) {}
             Git.cloneRepository()
