@@ -17,6 +17,7 @@ import static smallest.java.ci.GitHelper.isValidWebhook;
 
 public class GitHelperTest {
     
+    /** Test that cloneRepo function creates a folder with files */
     @Test
     void cloneRepoTest() throws IOException, GitAPIException {
         File newDirectory = new File("testFolder");
@@ -30,6 +31,7 @@ public class GitHelperTest {
         removeFolder("testFolder");
     }
     
+    /** Test that cloneRepo function throws an exception when cloning from an nonexisting branch or repo */
     @Test
     void cloneRepoExceptionTest() throws IOException {
         File newDirectory = new File("testFolder2");
@@ -44,6 +46,7 @@ public class GitHelperTest {
         removeFolder("testFolder2");
     }
 
+    /** Test that the function isValidWebhook can differentiate between correct and uncorrect branches in payload. Also that it detects faulty payloads */
     @Test
     void isValidWebhookTest() throws IOException, ParseException {
         String payload;

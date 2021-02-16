@@ -8,6 +8,8 @@ import java.io.IOException;
 import static smallest.java.ci.FsHelper.removeFolder;
 
 public class FsHelperTest {
+
+    /** Test that the removeFolder removes the folder as intended */
     @Test
     void removeFolderTest() throws IOException {
         File newDirectory = new File("testFolder");
