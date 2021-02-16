@@ -45,6 +45,6 @@ mailNotification.java Which contains the methods for sending an email to a targe
 Gustav Dowling - Mainly implemented the automatic building and testing functionality of the CI.
 
 Amar Hodzic - Implemented the Git clone, webhook validation and folder removal functions including tests. 
-As well as some functionality in the handle function used by the server handler.
+Added the functionality in the handle function, used by the server handler, as well as the functionality to serve static content (build info files).
 
 Petter Jansen - Wrote the class that sends a mail notification as well as pulls webhook data to use in the mail.
