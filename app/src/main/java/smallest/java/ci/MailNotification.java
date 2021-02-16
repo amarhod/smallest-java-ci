@@ -11,9 +11,9 @@ import org.json.JSONObject;
 
 /** Class that handles the sending of emails notifying users of their commit status */
 public class MailNotification {
-	
-	static void sendMail(String payload, String gradleBuildInfo) {
 
+	/** Sends an email to the members in the team regarding commit and build information */
+	static void sendMail(String payload, String gradleBuildInfo) {
 		JSONObject obj = new JSONObject(payload);
         
         String name = obj.getJSONObject("pusher").getString("name");
@@ -28,7 +28,6 @@ public class MailNotification {
 		String recipient3 = "gdowling@kth.se";
 
 	    Properties props = new Properties();
-
 		props.put("mail.smtp.auth", true);
 	    props.put("mail.smtp.host", "smtp.gmail.com");
 	    props.put("mail.from", username);
@@ -55,8 +54,5 @@ public class MailNotification {
 	    } catch (MessagingException e) {
 		e.printStackTrace();
 	    }
-		
-		
-		
 	}
 }
