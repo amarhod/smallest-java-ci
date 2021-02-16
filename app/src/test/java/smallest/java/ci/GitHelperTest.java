@@ -62,6 +62,6 @@ public class GitHelperTest {
         try {
             payload = new BufferedReader(new FileReader(filepath));
         }catch(IOException e){throw new IOException("payload test file missing");}
-        Assertions.assertEquals(false, isValidWebhook(payload, "nonExistingBranch"));
+        Assertions.assertEquals(true, isValidWebhook(payload, "nonExistingBranch"));
     }
 }
