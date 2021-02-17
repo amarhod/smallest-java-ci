@@ -1,0 +1,34 @@
+> Task :app:clean UP-TO-DATE
+> Task :app:compileJava
+> Task :app:processResources NO-SOURCE
+> Task :app:classes
+> Task :app:jar
+> Task :app:startScripts
+> Task :app:distTar
+> Task :app:distZip
+> Task :app:assemble
+> Task :app:compileTestJava
+> Task :app:processTestResources NO-SOURCE
+> Task :app:testClasses
+
+> Task :app:test
+
+[0K[1msmallest.java.ci.FsHelperTest[m
+
+[0K[1m  Test [22mremoveFolderTest()[32m PASSED[m
+
+[0K[1msmallest.java.ci.GitHelperTest[m
+
+[0K[1m  Test [22mcloneRepoExceptionTest()[32m PASSED[m
+[0K[1m  Test [22mcloneRepoTest()[32m PASSED[33m (1.1s)[m
+[0K[1m  Test [22misValidWebhookTest()[32m PASSED[m
+
+[0K[1;32mSUCCESS: [39mExecuted 4 tests in 2.7s[m
+
+
+> Task :app:check
+> Task :app:build
+
+BUILD SUCCESSFUL in 9s
+8 actionable tasks: 7 executed, 1 up-to-date
+
