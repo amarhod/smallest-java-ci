@@ -15,7 +15,7 @@ import static smallest.java.ci.GitHelper.getCommitHash;
 
 public class FsHelperTest {
 
-    /** Test that the removeFolder removes the folder as intended */
+    /** Test that removeFolder removes the folder as intended */
     @Test
     void removeFolderTest() throws IOException {
         File newDirectory = new File("testFolder");
@@ -25,7 +25,7 @@ public class FsHelperTest {
         Assertions.assertFalse(new File("testFolder").exists());
     }
 
-    /** Test that the removeFolder removes the folder as intended */
+    /** Test that saveBuildInfo creates a non-empty file in the correct folder (app/buildMetaInfo) */
     @Test
     void saveBuildInfoTest() throws IOException {
         String currentPath = System.getProperty("user.dir") + "/src/test/java/smallest/java/ci/";
