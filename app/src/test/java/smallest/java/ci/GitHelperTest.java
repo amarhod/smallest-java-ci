@@ -12,8 +12,7 @@ import java.io.IOException;
 import java.util.stream.Collectors;
 
 import static smallest.java.ci.FsHelper.removeFolder;
-import static smallest.java.ci.GitHelper.cloneRepo;
-import static smallest.java.ci.GitHelper.isValidWebhook;
+import static smallest.java.ci.GitHelper.*;
 
 public class GitHelperTest {
     
@@ -29,6 +28,7 @@ public class GitHelperTest {
         cloneRepo("testFolder", "webhook");
         Assertions.assertNotEquals(0, new File("testFolder").list().length);
         removeFolder("testFolder");
+        Assertions.assertFalse(new File("testFolder").exists());
     }
     
     /** Test that cloneRepo function throws an exception when cloning from an nonexisting branch or repo */
@@ -56,15 +56,25 @@ public class GitHelperTest {
             payload = new BufferedReader(new FileReader(filepath)).lines().collect(Collectors.joining());
         }catch(IOException e){throw new IOException("payload test file missing");}
 
-        Assertions.assertEquals(true, isValidWebhook(payload, "webhook-signals"));
-
-        Assertions.assertEquals(false, isValidWebhook(payload, "nonExistingBranch"));
+        Assertions.assertTrue(isValidWebhook(payload, "webhook-signals"));
+        Assertions.assertFalse(isValidWebhook(payload, "nonExistingBranch"));
 
         filepath = currentPath + "badPayload.json";
         try {
             payload = new BufferedReader(new FileReader(filepath)).lines().collect(Collectors.joining());
         }catch(IOException e){throw new IOException("payload test file missing");}
 
-        Assertions.assertEquals(false, isValidWebhook(payload, "nonExistingBranch"));
+        Assertions.assertFalse(isValidWebhook(payload, "nonExistingBranch"));
+    }
+
+    /** Test that getCommitHash returns correct commit hash from the payload that Github webhook sends */
+    @Test
+    void getCommitHashTest() throws IOException {
+        String currentPath = System.getProperty("user.dir") + "/src/test/java/smallest/java/ci/";
+        String filepath = currentPath + "payload.json";
+        BufferedReader reader = new BufferedReader(new FileReader(filepath));
+        String payload = reader.lines().collect(Collectors.joining("\n"));
+        String commitHash = getCommitHash(payload);
+        Assertions.assertEquals("0762e2aff34081061608b9788ccee7a747a0355a", commitHash);
     }
 }
